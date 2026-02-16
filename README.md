@@ -68,7 +68,7 @@ The resulting JAR will be under `backend/target/` (e.g. `expenseTracker-0.0.1-SN
 ```bash
 cd frontend
 npm install
-npm start
+cmd /c npm start
 ```
 
 By default the React dev server runs on port 3000. Configure the frontend to proxy API requests to the backend if needed (see `package.json` and `src` code).
