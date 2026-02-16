@@ -1,0 +1,122 @@
+import { useEffect, useState } from 'react';
+import '../../../assets/styles/register.css';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthService from '../../../services/auth.service';
+import Logo from '../../../components/utils/Logo';
+
+function Login() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentUser = AuthService.getCurrentUser();
+    const roles = normalizeRoles(currentUser?.roles);
+
+    if (roles.has('ROLE_USER')) {
+      navigate('/user/dashboard');
+    } else if (roles.has('ROLE_ADMIN')) {
+      navigate('/admin/transactions');
+    }
+  }, [navigate]);
+
+  const { register, handleSubmit, formState } = useForm();
+
+  const [response_error, setResponseError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    await AuthService.login_req(data.email, data.password).then(
+      () => {
+        setResponseError('');
+        const roles = normalizeRoles(AuthService.getCurrentUser()?.roles);
+
+        if (roles.has('ROLE_USER')) {
+          window.location.assign('/user/dashboard');
+        } else if (roles.has('ROLE_ADMIN')) {
+          window.location.assign('/admin/transactions');
+        } else {
+          setResponseError('Login succeeded but no valid role found for this account.');
+        }
+        localStorage.setItem('message', JSON.stringify({ status: 'SUCCESS', text: 'Login successfull!' }));
+      },
+      (error) => {
+        const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        console.log(resMessage);
+        if (resMessage === 'Bad credentials') {
+          setResponseError('Invalid email or password!');
+        } else {
+          setResponseError('Something went wrong: Try again later!');
+        }
+      }
+    );
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="container">
+      <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+        <Logo />
+        <h2>Login</h2>
+        {response_error !== '' && <p>{response_error}</p>}
+
+        <div className="input-box floating">
+          <input
+            type="text"
+            placeholder=" "
+            {...register('email', {
+              required: 'Email is required!',
+              pattern: { value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Invalid email address!' }
+            })}
+          />
+          <label>Email</label>
+          {formState.errors.email && <small>{formState.errors.email.message}</small>}
+        </div>
+
+        <div className="input-box floating">
+          <input
+            type="password"
+            placeholder=" "
+            {...register('password', {
+              required: 'Password is required!'
+            })}
+          />
+          <label>Password</label>
+          {formState.errors.password && <small>{formState.errors.password.message}</small>}
+        </div>
+
+        <div className="msg">
+          <Link to={'/auth/forgetpassword/verifyEmail'} className="inline-link">
+            Forgot password?
+          </Link>
+        </div>
+        <br />
+
+        <div className="input-box">
+          <input type="submit" value={isLoading ? 'Logging in...' : 'Login'} className={isLoading ? 'button button-fill loading' : 'button button-fill'} />
+        </div>
+        <br />
+        <div className="msg">
+          New member?{' '}
+          <Link to="/auth/register" className="inline-link">
+            Register Here
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default Login;
+
+function normalizeRoles(roles) {
+  const normalized = new Set();
+
+  (roles || []).forEach((role) => {
+    const raw = String(role).trim().toUpperCase();
+    if (!raw) return;
+    normalized.add(raw.startsWith('ROLE_') ? raw : `ROLE_${raw}`);
+  });
+
+  return normalized;
+}

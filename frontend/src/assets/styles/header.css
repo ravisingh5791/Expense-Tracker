@@ -1,0 +1,70 @@
+.user-content .top {
+  display: flex;
+  width: calc(100% - 320px);
+  min-height: 72px;
+  padding: 14px 22px;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 12px;
+  left: 300px;
+  z-index: 4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-glass);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-content .top .title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-content .top .title h1 {
+  font-size: 1.36rem;
+}
+
+.profile {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.profile > div:last-child p {
+  color: var(--text-main);
+  line-height: 1.2;
+  font-size: 0.9rem;
+}
+
+.profile > div:last-child p:last-of-type {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+@media all and (max-width: 1024px) {
+  .user-content .top {
+    left: 98px;
+    width: calc(100% - 112px);
+  }
+}
+
+@media all and (max-width: 768px) {
+  .user-content .top {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    padding-left: 56px;
+    min-height: 58px;
+    border-radius: var(--radius-md);
+  }
+
+  .user-content .top .title h1 {
+    font-size: 1.02rem;
+  }
+
+  .user-content .top .profile {
+    display: none;
+  }
+}

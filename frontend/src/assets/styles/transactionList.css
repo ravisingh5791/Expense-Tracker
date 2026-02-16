@@ -1,0 +1,67 @@
+.t-box {
+  margin-bottom: 14px;
+  animation: fade-in var(--duration-mid) var(--easing);
+}
+
+.t-box .date {
+  font-size: 0.83rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.t-list {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface-glass);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.t-list .t-row {
+  padding: 13px 15px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: inherit;
+  transition: background var(--duration-fast) var(--easing), transform var(--duration-fast) var(--easing);
+}
+
+.t-list .t-row:not(:last-of-type) {
+  border-bottom: 1px solid var(--line);
+}
+
+.t-list .t-row:hover {
+  background: var(--hover-bg);
+  transform: translateX(2px);
+}
+
+.t-row-left {
+  flex: 1;
+}
+
+.t-row-left p:first-of-type {
+  color: var(--text-main);
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.t-row-left p:last-of-type {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.t-row-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-row-right p {
+  font-size: 1rem;
+  color: var(--text-main);
+  font-weight: 700;
+}

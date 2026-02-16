@@ -1,0 +1,122 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10%;
+  min-height: 100vh;
+  width: 100%;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(66, 86, 244, 0.24), transparent 42%),
+    radial-gradient(circle at 85% 85%, rgba(15, 159, 110, 0.14), transparent 35%),
+    url('../images/bg.png') right / cover no-repeat;
+  position: relative;
+}
+
+.auth-form {
+  color: var(--text-main);
+  padding: 30px;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  z-index: 1;
+  background: var(--surface-glass);
+  backdrop-filter: blur(10px);
+  animation: fade-in var(--duration-mid) var(--easing);
+}
+
+.auth-form h2 {
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.auth-form .input-box {
+  margin: 9px 0;
+  width: 100%;
+}
+
+.auth-form .input-box.floating {
+  position: relative;
+}
+
+.auth-form .input-box.floating input {
+  margin-top: 0;
+  padding-top: 19px;
+  padding-bottom: 9px;
+}
+
+.auth-form .input-box.floating label {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  transition: transform var(--duration-fast) var(--easing), top var(--duration-fast) var(--easing), color var(--duration-fast) var(--easing), font-size var(--duration-fast) var(--easing);
+  pointer-events: none;
+}
+
+.auth-form .input-box.floating input:focus + label,
+.auth-form .input-box.floating input:not(:placeholder-shown) + label {
+  top: 4px;
+  transform: translateY(-2px);
+  font-size: 0.72rem;
+  color: var(--primary);
+}
+
+.auth-form label {
+  font-size: 0.85rem;
+}
+
+.auth-form .msg {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.auth-form .inline-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.auth-form .inline-link:hover {
+  text-decoration: underline;
+}
+
+.auth-form small {
+  margin-top: 6px;
+  display: block;
+}
+
+.auth-form p {
+  color: var(--danger);
+  margin: 10px 0;
+  padding: 8px 10px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  background-color: rgba(217, 75, 90, 0.12);
+  width: 100%;
+  animation: float-up var(--duration-mid) var(--easing);
+}
+
+.auth-form .input-box:last-of-type {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media all and (max-width: 900px) {
+  .container {
+    padding: 0 4%;
+    justify-content: center;
+    background-position: center;
+  }
+
+  .auth-form {
+    padding: 22px 18px;
+    border-radius: var(--radius-md);
+  }
+}

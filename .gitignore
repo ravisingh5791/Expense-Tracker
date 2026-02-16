@@ -1,0 +1,47 @@
+# Java / Maven
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+/.mvn/
+mvnw.cmd
+mvnw
+
+# Node / Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+frontend/.env
+frontend/.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Uploads / generated files
+/uploads/
+*.sqlite
+*.db
+
+# Logs and runtime files
+*.log
+logs/
+*.pid
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*.local
+
+# Misc
+dist/
+.cache/
