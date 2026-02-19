@@ -46,7 +46,7 @@ cd backend
 On Windows use `mvnw.cmd` if needed:
 
 ```powershell
-mvnw.cmd spring-boot:run
+mvn spring-boot:run
 ```
 
 The backend listens on the port configured in `src/main/resources/application.properties` (commonly 8080).
