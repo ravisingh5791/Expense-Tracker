@@ -14,6 +14,11 @@ Expense tracker application with a Spring Boot backend and a React frontend.
 - `frontend/` - React app
 - `Screenshots/` - project screenshots
 
+## Live Deployment
+
+- Frontend: `https://frontend-production-6a91.up.railway.app`
+- Backend: `https://backend-production-ab1e.up.railway.app`
+
 ## Prerequisites
 
 - Java 21
