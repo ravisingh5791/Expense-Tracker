@@ -65,15 +65,13 @@ public class WebSecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers("/mywallet/auth/**").permitAll()
-                                .requestMatchers("/mywallet/transactiontype/**").permitAll()
-                                .requestMatchers("/mywallet/category/**").permitAll()
-                                .requestMatchers("/mywallet/transaction/**").permitAll()
-                                .requestMatchers("/mywallet/user/**").permitAll()
-                                .anyRequest().authenticated()
-                );
+                .authorizeHttpRequests(auth -> 
+                     auth
+                         .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                         .requestMatchers("/auth/**").permitAll()
+                         .requestMatchers("/mywallet/auth/**").permitAll()
+                         .anyRequest().authenticated()
+                        );
 
         http.authenticationProvider(authenticationProvider());
 
