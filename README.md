@@ -19,6 +19,28 @@ Expense tracker application with a Spring Boot backend and a React frontend.
 - Frontend: `https://frontend-production-6a91.up.railway.app`
 - Backend: `https://backend-production-ab1e.up.railway.app`
 
+## Render Deployment
+
+This repo now includes [`render.yaml`](render.yaml) so you can deploy both services on Render.
+
+Frontend Render env var:
+
+- `REACT_APP_API_BASE_URL=https://your-backend-service.onrender.com/mywallet`
+
+Backend Render env vars:
+
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+- `APP_JWT_SECRET`
+- `SPRING_MAIL_USERNAME`
+- `SPRING_MAIL_PASSWORD`
+- `APP_CORS_ALLOWED_ORIGIN_PATTERNS=https://your-frontend-service.onrender.com`
+
+Backend health check:
+
+- `https://your-backend-service.onrender.com/health`
+
 ## Prerequisites
 
 - Java 21
@@ -36,12 +58,12 @@ mvn spring-boot:run
 
 The backend runs on:
 
-- `http://localhost:9090`
+- `http://localhost:8080`
 
 Health check:
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing http://localhost:9090/health
+Invoke-WebRequest -UseBasicParsing http://localhost:8080/health
 ```
 
 ## Frontend Run Command
@@ -96,14 +118,14 @@ cmd /c npm start
 Then open:
 
 - Frontend: `http://localhost:3000`
-- Backend health: `http://localhost:9090/health`
+- Backend health: `http://localhost:8080/health`
 
 ## Notes
 
-- If port `9090` is busy, check it with:
+- If port `8080` is busy, check it with:
 
 ```powershell
-netstat -ano | findstr :9090
+netstat -ano | findstr :8080
 ```
 
 - If port `3000` is busy, check it with:
@@ -113,7 +135,7 @@ netstat -ano | findstr :3000
 ```
 
 - Local frontend uses backend base URL:
-  - `http://localhost:9090/mywallet`
+  - `http://localhost:8080/mywallet`
 
 ## Screenshots
 
