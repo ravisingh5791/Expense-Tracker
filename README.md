@@ -47,6 +47,33 @@ Backend health check:
 - Maven 3.6+
 - Node.js and npm
 
+## Quick Run Commands
+
+Open the project root folder in PowerShell, then use these commands.
+
+Terminal 1 - Backend:
+
+```powershell
+$env:SPRING_DATASOURCE_PASSWORD = Read-Host "Enter MySQL password"
+$env:APP_JWT_SECRET = "change-this-development-jwt-secret-before-production-use"
+cd backend
+mvn spring-boot:run
+```
+
+Terminal 2 - Frontend:
+
+```powershell
+cd frontend
+cmd /c npm install --ignore-scripts
+cmd /c npm start
+```
+
+After both servers start, open:
+
+```text
+http://localhost:3000
+```
+
 ## Backend Run Command
 
 Open a terminal in the project root and run:
