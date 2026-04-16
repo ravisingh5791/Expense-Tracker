@@ -67,10 +67,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers("/mywallet/auth/**").permitAll()
-                                .requestMatchers("/mywallet/transactiontype/**").permitAll()
-                                .requestMatchers("/mywallet/category/**").permitAll()
-                                .requestMatchers("/mywallet/transaction/**").permitAll()
-                                .requestMatchers("/mywallet/user/**").permitAll()
+                                .requestMatchers("/mywallet/**").authenticated()
                                 .anyRequest().authenticated()
                 );
 

@@ -19,7 +19,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Uploads / generated files
-/uploads/
+uploads/
+**/uploads/
 *.sqlite
 *.db
 
