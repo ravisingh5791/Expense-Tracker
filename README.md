@@ -54,7 +54,7 @@ Open the project root folder in PowerShell, then use these commands.
 Terminal 1 - Backend:
 
 ```powershell
-$env:SPRING_DATASOURCE_PASSWORD = Read-Host "Enter MySQL password"
+$env:SPRING_DATASOURCE_PASSWORD="Ravi@1234"
 $env:APP_JWT_SECRET = "change-this-development-jwt-secret-before-production-use"
 cd backend
 mvn spring-boot:run
@@ -64,7 +64,6 @@ Terminal 2 - Frontend:
 
 ```powershell
 cd frontend
-cmd /c npm install --ignore-scripts
 cmd /c npm start
 ```
 
