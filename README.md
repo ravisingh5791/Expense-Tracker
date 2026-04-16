@@ -49,16 +49,24 @@ Backend health check:
 
 ## Backend Run Command
 
-Open a terminal and run:
+Open a terminal in the project root and run:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\backend
+$env:SPRING_DATASOURCE_PASSWORD="your_mysql_password"
+$env:APP_JWT_SECRET="change-this-development-jwt-secret-before-production-use"
+cd backend
 mvn spring-boot:run
 ```
 
 The backend runs on:
 
 - `http://localhost:8080`
+
+For this local project setup, the backend expects MySQL to have:
+
+- Database: `expensetracker`
+- Username: `expense_user`
+- Password: provided through `SPRING_DATASOURCE_PASSWORD`
 
 Health check:
 
@@ -71,8 +79,8 @@ Invoke-WebRequest -UseBasicParsing http://localhost:8080/health
 Open another terminal and run:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\frontend
-cmd /c npm install
+cd frontend
+cmd /c npm install --ignore-scripts
 cmd /c npm start
 ```
 
@@ -85,14 +93,14 @@ The frontend runs on:
 Backend:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\backend
+cd backend
 mvn clean package -DskipTests
 ```
 
 Frontend:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\frontend
+cd frontend
 cmd /c npm run build
 ```
 
@@ -103,15 +111,17 @@ Use two terminals.
 Terminal 1:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\backend
+$env:SPRING_DATASOURCE_PASSWORD="your_mysql_password"
+$env:APP_JWT_SECRET="change-this-development-jwt-secret-before-production-use"
+cd backend
 mvn spring-boot:run
 ```
 
 Terminal 2:
 
 ```powershell
-cd c:\Projects\Fullstack-Expense-Tracker-main\frontend
-cmd /c npm install
+cd frontend
+cmd /c npm install --ignore-scripts
 cmd /c npm start
 ```
 
@@ -136,6 +146,8 @@ netstat -ano | findstr :3000
 
 - Local frontend uses backend base URL:
   - `http://localhost:8080/mywallet`
+- Use `cmd /c npm ...` on Windows PowerShell if direct `npm` commands are blocked by execution policy.
+- Protected backend APIs require JWT authentication. Login first, then frontend sends `Authorization: Bearer <token>` automatically.
 
 ## Screenshots
 
